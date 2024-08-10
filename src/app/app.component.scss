@@ -1,0 +1,15 @@
+.parent {
+  display: grid;
+  grid-gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+}
+
+.example-card {
+  max-width: 200px;
+  transition: background-color 0.3s ease; // Thêm hiệu ứng chuyển đổi màu mượt mà
+}
+
+
+.example-card:hover {
+  background-color: aqua; // Thay đổi màu nền khi di chuột vào
+}

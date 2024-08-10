@@ -1,8 +1,16 @@
-import { ApplicationConfig } from '@angular/core';
-import { provideRouter } from '@angular/router';
+import {ApplicationConfig, provideZoneChangeDetection} from '@angular/core';
+import {provideRouter} from '@angular/router';
 
-import { routes } from './app.routes';
+import {routes} from './app.routes';
+import {provideAnimationsAsync} from '@angular/platform-browser/animations/async';
+import {provideStore} from '@ngrx/store';
+import {provideEffects} from '@ngrx/effects';
+import {provideHttpClient} from "@angular/common/http";
+import {PokemonEffects} from "../ngrx/pokemon/pokemon.effects";
+import {pokemonReducer} from "../ngrx/pokemon/pokemon.reducer";
 
 export const appConfig: ApplicationConfig = {
-  providers: [provideRouter(routes)]
+  providers: [provideZoneChangeDetection({eventCoalescing: true}), provideRouter(routes), provideAnimationsAsync(), provideStore({
+    'pokemon':pokemonReducer
+  }), provideEffects(PokemonEffects), provideHttpClient()]
 };
