@@ -8,9 +8,12 @@ import {provideEffects} from '@ngrx/effects';
 import {provideHttpClient} from "@angular/common/http";
 import {PokemonEffects} from "../ngrx/pokemon/pokemon.effects";
 import {pokemonReducer} from "../ngrx/pokemon/pokemon.reducer";
+import {profileReducer} from "../ngrx/profile/profile.reducer";
+import {ProfileEffects} from "../ngrx/profile/profile.effects";
 
 export const appConfig: ApplicationConfig = {
   providers: [provideZoneChangeDetection({eventCoalescing: true}), provideRouter(routes), provideAnimationsAsync(), provideStore({
-    'pokemon':pokemonReducer
-  }), provideEffects(PokemonEffects), provideHttpClient()]
+    'pokemon':pokemonReducer,
+    'profile': profileReducer
+  }), provideEffects(PokemonEffects), provideHttpClient(), provideEffects(ProfileEffects)]
 };

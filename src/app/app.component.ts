@@ -9,6 +9,7 @@ import {AsyncPipe} from "@angular/common";
 import {MatButtonModule} from '@angular/material/button';
 import {MatCardModule} from '@angular/material/card';
 import {PokemonModel} from "./models/pokemon.model";
+import {ProfileService} from "../services/profile.service";
 
 
 @Component({
@@ -29,7 +30,8 @@ export class AppComponent {
 
   pokemonList: PokemonModel[] = [];
 
-  constructor(private store: Store<{ pokemon: PokemonState }>) {
+  constructor(private store: Store<{ pokemon: PokemonState }>,
+              private profileService: ProfileService) {
     this.store.dispatch(PokemonActions.getPokemonList({gen: 'ii'}));
 
 
