@@ -25,4 +25,39 @@ export class ProfileEffects {
       )
     })
   ))
+
+  getProfileById$ = createEffect(() => this.actions$.pipe(
+    ofType(ProfileActions.getProfileById),
+    switchMap(action => this.profileService.getProfileById(action.id).pipe(
+      map(profile => ProfileActions.getProfileByIdSuccess({ profile })),
+      catchError(error => of(ProfileActions.getProfileByIdFailure({ error: error })))
+    ))
+  ));
+
+  deleteProfile$ = createEffect(() => this.actions$.pipe(
+    ofType(ProfileActions.deleteProfile),
+    switchMap(action => this.profileService.deleteProfile(action.id).pipe(
+      map(() => ProfileActions.deleteProfileSuccess({ id: action.id })),
+      catchError(error => of(ProfileActions.deleteProfileFailure({ error: error })))
+    ))
+  ));
+
+  // Create profile
+  createProfile$ = createEffect(() => this.actions$.pipe(
+    ofType(ProfileActions.createProfile),
+    switchMap(action => this.profileService.createProfile(action.profile).pipe(
+      map(profile => ProfileActions.createProfileSuccess({ profile })),
+      catchError(error => of(ProfileActions.createProfileFailure({ error: error })))
+    ))
+  ));
+
+  // Update profile
+  updateProfile$ = createEffect(() => this.actions$.pipe(
+    ofType(ProfileActions.updateProfile),
+    switchMap(action => this.profileService.updateProfile(action.profile).pipe(
+      map(profile => ProfileActions.updateProfileSuccess({ profile })),
+      catchError(error => of(ProfileActions.updateProfileFailure({ error: error })))
+    ))
+  ));
+
 }

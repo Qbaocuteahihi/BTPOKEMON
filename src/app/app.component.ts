@@ -32,7 +32,7 @@ export class AppComponent {
 
   constructor(private store: Store<{ pokemon: PokemonState }>,
               private profileService: ProfileService) {
-    this.store.dispatch(PokemonActions.getPokemonList({gen: 'ii'}));
+    this.store.dispatch(PokemonActions.getPokemonList({gen: 'i'}));
 
 
     this.pokemonList$.subscribe((pokemonList) => {
